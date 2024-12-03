@@ -15,11 +15,27 @@
   limitations under the License.
 
 ////
-:revealjs_progress: true
-:revealjs_slidenumber: true
-:sourcedir: ../java
+
+include::_settings.adoc[]
+:presenter_name: Your Name
+:presenter_company: Your Company
+:description: Introduction to Apache Airflow
+:keywords: Apache, Airflow
+:author: Your Name
+:email: Your email
+:position: Your role
+
+== Apache Airflow
+
+image::AirflowLogo.png[]
+
+[.notes]
+--
+Introduce yourself, and your role in the Apache Airflow community.
+--
 
 == What is Apache Airflow?
+
 Airflow is a platform to programmatically author, schedule and monitor workflows.
 
 == Airflow Principles
@@ -30,6 +46,12 @@ Airflow is built on following principles:
 * Dynamic
 * Extensible
 * Elegant
+
+[.notes]
+--
+Each principle has a slide following that explains it, so you don't need
+to explain this here.
+--
 
 == Airflow Principle: Scalable
 
@@ -48,6 +70,7 @@ Easily define your own operators and extend libraries to fit the level of abstra
 Airflow pipelines are lean and explicit. Parametrization is built into its core using the powerful Jinja templating engine.
 
 == Airflow Features
+
 Apache Airflow provides following features:
 
 * Pure Python
@@ -76,9 +99,13 @@ Anyone with Python knowledge can deploy a workflow. Apache Airflow does not limi
 
 Wherever you want to share your improvement you can do this by opening a PR. It’s simple as that, no barriers, no prolonged procedures. Airflow has many active users who willingly share their experiences. Have any questions? Check out our buzzing slack.
 
-
+[.notes]
+--
+Where is the Slack? How does one join?
+--
 
 == Airflow Integrations
+
 Airflow supports following main integrations:
 
 * Apache Sqoop
@@ -88,8 +115,13 @@ Airflow supports following main integrations:
 * Google Machine learning
 * Amazon Athena
 
+[.notes]
+--
+Ensure that this list reflects the latest state of the art.
+--
 
 == Airflow Providers packages
+
 Airflow has providers packages include integrations with third party integrations. They are updated independently of the Apache Airflow core. Some of these are:
 
 * Airbyte
@@ -98,10 +130,15 @@ Airflow has providers packages include integrations with third party integration
 * Apache Cassandra
 * JIRA
 
+[.notes]
+--
+This section should be periodically updated to reflect the current state
+of the project.
+--
 
 == Airflow Docker stack
-Airflow has an official Dockerfile and Docker image published in DockerHub as a convenience package for installation. You can extend and customize the image according to your requirements and use it in your own deployments.
 
+Airflow has an official Dockerfile and Docker image published in DockerHub as a convenience package for installation. You can extend and customize the image according to your requirements and use it in your own deployments.
 
 == Further Sources
 Refer official documents on Apache Airflow here:
