@@ -36,7 +36,7 @@ include::_settings.adoc[]
 [.notes]
 --
 
-* ComDev exists to help projects build their communties
+* ComDev exists to help projects build their communities
 * Yes, projects should do this themselves, but having common practices and tools lowers the barrier
 * ComDev is a PMC - a peer to other PMCs. It does *not* have authority over other PMCs.
 
@@ -120,7 +120,7 @@ ComDev PMC about their progress.
 
 == wg-advisors
 
-* Advising projecdts and PMCs on best practice
+* Advising projects and PMCs on best practice
 * Seasoned ASF members and community managers
 * It's important to respect a project's autonomy
 
@@ -128,7 +128,7 @@ ComDev PMC about their progress.
 --
 
 This is really no different from going to the project and volunteering
-your expertise, but having the working group emboldens pepole to do this
+your expertise, but having the working group emboldens people to do this
 work. And it makes projects more willing to accept the advice, as it's
 part of an "official program".
 
@@ -175,7 +175,7 @@ image::fas-paranoid-panda.png[]
 [.notes]
 --
 
-Concept based on the Fedora badging sysem - https://badges.fedoraproject.org/
+Concept based on the Fedora badging system - https://badges.fedoraproject.org/
 
 --
 
@@ -190,7 +190,7 @@ and rewards the wrong behavior. Come join the conversation.
 
 What will we celebrate?
 * First commit, 100th commit
-* Becoming a commiter! Becoming a PMC member! Becoming a PMC chair!
+* Becoming a committer! Becoming a PMC member! Becoming a PMC chair!
 * Attending events
 * Being a RM
 * Voted on a release
