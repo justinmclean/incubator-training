@@ -15,9 +15,24 @@
   limitations under the License.
 
 ////
-:revealjs_progress: true
-:revealjs_slidenumber: true
-:sourcedir: ../java
+
+include::_settings.adoc[]
+:presenter_name: Your Name
+:presenter_company: Your Company
+:description: Introduction to Apache Druid
+:keywords: Apache, Druid
+:author: Your Name
+:email: Your email
+:position: Your role
+
+== Apache Druid
+
+image::druid-logo.png[]
+
+[.notes]
+--
+Introduce yourself, and your role in the Apache Druid community.
+--
 
 == What is Apache Druid?
 Apache Druid is a fast and modern analytics database.
