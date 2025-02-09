@@ -105,7 +105,7 @@ Core components include the scheduler, workers, metadata database, and web serve
 What enables scaling of Airflow :
 
 - Utilizes a message queue (e.g., Redis, RabbitMQ) to coordinate task execution across workers. This enables asynchronous communication between the scheduler and workers
-- Supports multiple executor types (e.g., Celery, Kubernetes) for distributed task execution.+
+- Supports multiple executor types (e.g., Celery, Kubernetes) for distributed task execution.
 
 == Scaling Strategies
 
@@ -117,7 +117,7 @@ a. Horizontal Scaling
 
 b. Vertical Scaling 
 
-  Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel). +
+  Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel).
   Adjust resource limits in Kubernetes, Celery, or LocalExecutor setups for optimal performance. 🚀
 
 == Airflow Principle: Dynamic
