@@ -34,9 +34,41 @@ image::AirflowLogo.png[]
 Introduce yourself, and your role in the Apache Airflow community.
 --
 
+== Table of Contents
+
+* What is Apache Airflow?
+* Apache Airflow - Core Concepts
+* Airflow Principles
+  * Airflow Principle: Scalable
+    * Scaling Strategies
+  * Airflow Principle: Dynamic 
+  * Airflow Principle: Extensible
+  * Airflow Principle: Elegant
+* Airflow Integrations
+* Airflow Providers packages
+* Airflow Docker stack
+
 == What is Apache Airflow?
 
 Airflow is a platform to programmatically author, schedule and monitor workflows.
+Developed initially by Airbnb in 2014 and later donated to the Apache Software Foundation, Airflow has become the de facto standard for workflow orchestration in the data engineering ecosystem
+
+== Apache Airflow - Core Concepts
+
+a. Directed Acyclic Graphs (DAGs)
+
+At the heart of Airflow are Directed Acyclic Graphs (DAGs), which represent workflows as collections of tasks organized with dependencies and relationships. DAGs ensure tasks are executed in a specific order without looping back, providing a clear and logical representation of complex workflows.
+
+b. Tasks 
+
+Tasks are the smallest unit of work in Airflow. They are the individual units of work that make up a DAG. These are typically implemented using Operators.
+Operators are the classes that define the logic of a task.
+
+c. Operators
+
+Operators are the classes that define the logic of a task. They are the smallest unit of work in Airflow.
+Example of pre-built operators include PythonOperators, BashOperators, etc.
+
 
 == Airflow Principles
 
@@ -55,19 +87,46 @@ to explain this here.
 
 == Airflow Principle: Scalable
 
-Airflow has a modular architecture and uses a message queue to orchestrate an arbitrary number of workers. Airflow is ready to scale to infinity.
+- Airflow has a modular architecture, allowing for flexible deployment and scaling of individual components.
+Core components include the scheduler, workers, metadata database, and web server 
+
+What enables scaling of Airflow :
+
+- Utilizes a message queue (e.g., Redis, RabbitMQ) to coordinate task execution across workers. This enables asynchronous communication between the scheduler and workers
+
+- Supports multiple executor types (e.g., Celery, Kubernetes) for distributed task execution.
+This allows Horizontal Scaling
+
+== Scaling Strategies
+
+a. Horizontal Scaling
+
+  Add more worker nodes to increase task processing capacity.
+	•	Celery Executor: Scale by increasing the number of Celery workers.
+	•	Kubernetes Executor: Dynamically scale worker pods based on workload
+
+b. Vertical Scaling 
+
+Airflow Vertical Scaling
+
+Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel). 
+Adjust resource limits in Kubernetes, Celery, or LocalExecutor setups for optimal performance. 🚀
 
 == Airflow Principle: Dynamic
 
-Airflow pipelines are defined in Python, allowing for dynamic pipeline generation. This allows for writing code that instantiates pipelines dynamically.
+Airflow pipelines are written in Python, enabling dynamic DAG generation. 
+This allows workflows to be parameterized, templated, and instantiated programmatically, adapting to changing data and business logic. 🚀
 
 == Airflow Principle: Extensible
 
-Easily define your own operators and extend libraries to fit the level of abstraction that suits your environment.
+Airflow allows you to create custom operators, hooks, and plugins, extending its functionality to match your specific needs. 
+This helps integrate with any system, define new abstractions, and tailor workflows to your environment seamlessly. 🚀
+
 
 == Airflow Principle: Elegant
 
 Airflow pipelines are lean and explicit. Parametrization is built into its core using the powerful Jinja templating engine.
+This allows for dynamic, reusable, and efficient DAGs, reducing redundancy and enhancing flexibility. 
 
 == Airflow Features
 
