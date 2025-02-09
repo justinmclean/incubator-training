@@ -39,11 +39,13 @@ Introduce yourself, and your role in the Apache Airflow community.
 * What is Apache Airflow?
 * Apache Airflow - Core Concepts
 * Airflow Principles
+---
   * Airflow Principle: Scalable
     * Scaling Strategies
   * Airflow Principle: Dynamic 
   * Airflow Principle: Extensible
   * Airflow Principle: Elegant
+---  
 * Airflow Integrations
 * Airflow Providers packages
 * Airflow Docker stack
@@ -51,24 +53,34 @@ Introduce yourself, and your role in the Apache Airflow community.
 == What is Apache Airflow?
 
 Airflow is a platform to programmatically author, schedule and monitor workflows.
+
 Developed initially by Airbnb in 2014 and later donated to the Apache Software Foundation, Airflow has become the de facto standard for workflow orchestration in the data engineering ecosystem
 
 == Apache Airflow - Core Concepts
 
 a. Directed Acyclic Graphs (DAGs)
 
-At the heart of Airflow are Directed Acyclic Graphs (DAGs), which represent workflows as collections of tasks organized with dependencies and relationships. DAGs ensure tasks are executed in a specific order without looping back, providing a clear and logical representation of complex workflows.
+---
+  At the heart of Airflow are Directed Acyclic Graphs (DAGs), which represent workflows as collections of tasks organized with dependencies and relationships. 
+  DAGs ensure tasks are executed in a specific order without looping back, providing a clear and logical representation of complex workflows.
+---
 
 b. Tasks 
 
-Tasks are the smallest unit of work in Airflow. They are the individual units of work that make up a DAG. These are typically implemented using Operators.
-Operators are the classes that define the logic of a task.
+---
+  Tasks are the smallest unit of work in Airflow. 
+  They are the individual units of work that make up a DAG. 
+  These are typically implemented using Operators.
+  Operators are the classes that define the logic of a task.
+---
 
 c. Operators
 
-Operators are the classes that define the logic of a task. They are the smallest unit of work in Airflow.
-Example of pre-built operators include PythonOperators, BashOperators, etc.
-
+---
+  Operators are the classes that define the logic of a task. 
+  They are the smallest unit of work in Airflow.
+  Example of pre-built operators include PythonOperators, BashOperators, etc.
+---
 
 == Airflow Principles
 
