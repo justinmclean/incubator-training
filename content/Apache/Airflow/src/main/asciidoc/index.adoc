@@ -114,30 +114,32 @@ This allows Horizontal Scaling
 a. Horizontal Scaling
 
   Add more worker nodes to increase task processing capacity.
-	•	Celery Executor: Scale by increasing the number of Celery workers.
-	•	Kubernetes Executor: Dynamically scale worker pods based on workload
+	....
+   • Celery Executor: Scale by increasing the number of Celery workers.
+	 • Kubernetes Executor: Dynamically scale worker pods based on workload
+  ....
 
 b. Vertical Scaling 
 
 Airflow Vertical Scaling
 
-Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel). 
+Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel). +
 Adjust resource limits in Kubernetes, Celery, or LocalExecutor setups for optimal performance. 🚀
 
 == Airflow Principle: Dynamic
 
-Airflow pipelines are written in Python, enabling dynamic DAG generation. 
+Airflow pipelines are written in Python, enabling dynamic DAG generation. +
 This allows workflows to be parameterized, templated, and instantiated programmatically, adapting to changing data and business logic. 🚀
 
 == Airflow Principle: Extensible
 
-Airflow allows you to create custom operators, hooks, and plugins, extending its functionality to match your specific needs. 
+Airflow allows you to create custom operators, hooks, and plugins, extending its functionality to match your specific needs. +
 This helps integrate with any system, define new abstractions, and tailor workflows to your environment seamlessly. 🚀
 
 
 == Airflow Principle: Elegant
 
-Airflow pipelines are lean and explicit. Parametrization is built into its core using the powerful Jinja templating engine.
+Airflow pipelines are lean and explicit. Parametrization is built into its core using the powerful Jinja templating engine. +
 This allows for dynamic, reusable, and efficient DAGs, reducing redundancy and enhancing flexibility. 
 
 == Airflow Features
