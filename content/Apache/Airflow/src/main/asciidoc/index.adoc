@@ -24,10 +24,18 @@ include::_settings.adoc[]
 :author: Your Name
 :email: Your email
 :position: Your role
+:revealjs_plugins: notes
+:revealjsdir: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0
 
-== Apache Airflow
 
-image::AirflowLogo.png[]
+
+[.text-center]
+====
+image::AirflowLogo.png[width=400, height=300, align=center]
+
+A High Level Overview
+====
+
 
 [.notes]
 --
@@ -37,59 +45,28 @@ Introduce yourself, and your role in the Apache Airflow community.
 == Table of Contents
 
 * What is Apache Airflow?
-* Apache Airflow - Core Concepts
 * Airflow Principles
-....
-  * Airflow Principle: Scalable
-    * Scaling Strategies
-  * Airflow Principle: Dynamic 
-  * Airflow Principle: Extensible
-  * Airflow Principle: Elegant
-.... 
+  ** Scalable
+     *** Scaling Strategies
+  ** Dynamic 
+  ** Extensible
+  ** Elegant
+* Airflow - Core Components  
+* Airflow Features  
 * Airflow Integrations
-* Airflow Providers packages
+* Airflow Providers
 * Airflow Docker stack
 
 == What is Apache Airflow?
 
-Airflow is a platform to programmatically author, schedule and monitor workflows.
+** Airflow is a platform to programmatically author, schedule and monitor workflows.
 
-Developed initially by Airbnb in 2014 and later donated to the Apache Software Foundation, Airflow has become the de facto standard for workflow orchestration in the data engineering ecosystem
+** Developed initially by Airbnb in 2014 and later donated to the Apache Software Foundation, Airflow has become the de facto standard for workflow orchestration in the data engineering ecosystem
 
-== Apache Airflow - Core Concepts
-
-....
-
-Directed Acyclic Graphs (DAGs)
-
-  At the heart of Airflow are Directed Acyclic Graphs (DAGs), which represent workflows as collections of tasks organized with dependencies and relationships. 
-  DAGs ensure tasks are executed in a specific order without looping back, providing a clear and logical representation of complex workflows.
-....
-
-....
-Tasks 
-
-  Tasks are the smallest unit of work in Airflow. They are the individual units of work that make up a DAG. 
-  These are typically implemented using Operators.
-  Operators are the classes that define the logic of a task.
-....
-
-....
-Operators  
-  
-  Operators are the classes that define the logic of a task. 
-  They are the smallest unit of work in Airflow.
-  Example of pre-built operators include PythonOperators, BashOperators, etc.
-....
 
 == Airflow Principles
 
-Airflow is built on following principles:
-
-* Scalable
-* Dynamic
-* Extensible
-* Elegant
+image::AirflowPrinciples2.png[]
 
 [.notes]
 --
@@ -99,42 +76,107 @@ to explain this here.
 
 == Airflow Principle: Scalable
 
-- Airflow has a modular architecture, allowing for flexible deployment and scaling of individual components. +
-Core components include the scheduler, workers, metadata database, and web server 
 
+image::airflow-is-scalable.png[]
+
+
+[.notes]
+--
 What enables scaling of Airflow :
 
 - Utilizes a message queue (e.g., Redis, RabbitMQ) to coordinate task execution across workers. This enables asynchronous communication between the scheduler and workers
+
 - Supports multiple executor types (e.g., Celery, Kubernetes) for distributed task execution.
+This allows Horizontal Scaling
+--
+
 
 == Scaling Strategies
 
-a. Horizontal Scaling
+image::airflow-scalingstrategies.png[]
 
-  Add more worker nodes to increase task processing capacity.
-  - Celery Executor: Scale by increasing the number of Celery workers.
-	- Kubernetes Executor: Dynamically scale worker pods based on workload
-
-b. Vertical Scaling 
-
-  Increase CPU and memory for critical components like the Scheduler (to handle more DAGs efficiently) and Workers (to process more tasks in parallel).
-  Adjust resource limits in Kubernetes, Celery, or LocalExecutor setups for optimal performance. 🚀
 
 == Airflow Principle: Dynamic
 
-Airflow pipelines are written in Python, enabling dynamic DAG generation. +
-This allows workflows to be parameterized, templated, and instantiated programmatically, adapting to changing data and business logic. 🚀
+image::airflow-dynamic.png[]
+
 
 == Airflow Principle: Extensible
 
-Airflow allows you to create custom operators, hooks, and plugins, extending its functionality to match your specific needs. +
-This helps integrate with any system, define new abstractions, and tailor workflows to your environment seamlessly. 🚀
+* Airflow allows you to create :
+  ** custom operators
+  ** custom sensors 
+  ** hooks
+  ** plugins
+
+  
+This helps extending Airflow functionality while also helping to integrate with any system, define new abstractions, and tailor workflows to your environment seamlessly. 🚀
+
+
+[.notes]
+--
+Custom Operators and Sensors: Airflow allows users to create custom operators and sensors to handle specific tasks and logic that are not covered by the built-in operators. 
+
+Hooks: Hooks are interfaces to external platforms and databases, implementing a common interface when possible and acting as building blocks for operators. 
+
+Plugins: Airflow's plugin architecture allows users to extend the platform's functionality by adding custom modules, operators, sensors, and hooks. 
+--
 
 
 == Airflow Principle: Elegant
 
-Airflow pipelines are lean and explicit. Parametrization is built into its core using the powerful Jinja templating engine. +
-This allows for dynamic, reusable, and efficient DAGs, reducing redundancy and enhancing flexibility. 
+image::airflow-elegant.png[]
+
+[.notes]
+
+== Airflow: Core Components
+
+image::airflow-corecomponents.png[]
+
+[.notes]
+--
+
+If required, you can explain each component briefly. 
+
+1. Scheduler
+	•	The scheduler is responsible for monitoring tasks and DAGs (Directed Acyclic Graphs), triggering scheduled workflows, and distributing tasks to the executor.
+	•	It parses DAG files at regular intervals and determines when tasks should be executed.
+
+2. Executor
+	•	The executor determines how and where tasks are executed.
+	•	Different types of executors include:
+	  **	SequentialExecutor: Runs one task at a time, useful for debugging.
+	  ** LocalExecutor: Runs multiple tasks in parallel within the same machine.
+	  ** CeleryExecutor: Distributes tasks across multiple worker nodes using Celery.
+	  ** KubernetesExecutor: Runs tasks in separate Kubernetes pods.
+
+3. Web Server (Airflow UI)
+	•	Provides a web-based interface to manage and monitor workflows.
+	•	Allows users to view DAGs, inspect task logs, trigger jobs manually, and manage configurations.
+
+4. Metadata Database
+	•	Stores DAG definitions, task states, execution logs, and other metadata.
+	•	Typically uses PostgreSQL or MySQL in production.
+	•	The scheduler and webserver interact with the metadata database to track workflow execution.
+
+5. Workers (if using CeleryExecutor or KubernetesExecutor)
+	•	Workers execute tasks assigned by the executor.
+	•	In CeleryExecutor, multiple worker nodes process tasks in parallel.
+	•	In KubernetesExecutor, each task runs in a separate Kubernetes pod.
+
+6. DAGs (Directed Acyclic Graphs)
+	•	DAGs define the workflows in Airflow.
+	•	A DAG consists of tasks and their dependencies, written in Python.
+
+7. Task Instances
+	•	A task instance represents a specific run of a task within a DAG at a particular execution date.
+	•	Task instances have different states such as running, success, failed, queued, etc.
+
+8. Triggerer (for Deferrable Operators)
+	•	Introduced in Airflow 2.x, the triggerer is responsible for handling deferred tasks asynchronously.
+	•	Helps optimize resource usage by freeing up worker slots while waiting for external events.
+
+--
 
 == Airflow Features
 
@@ -146,56 +188,117 @@ Apache Airflow provides following features:
 * Easy to Use
 * Open Source
 
+
+
+
 == Airflow Feature: Pure Python
 
-No more command-line or XML black-magic! Use standard Python features to create your workflows, including date time formats for scheduling and loops to dynamically generate tasks. This allows you to maintain full flexibility when building your workflows.
+image::python.png[width=260, align=center]
 
-== Airflow Feature: Useful UI
+No more command-line or XML black-magic! Everything is Python:
 
-Monitor, schedule and manage your workflows via a robust and modern web application. No need to learn old, cron-like interfaces. You always have full insight into the status and logs of completed and ongoing tasks.
+** create workflows
+** extend 
+** python libraries
+** scheduler, executor and workers run Python
+
+[.notes]
+--
+Workflow as Code – DAGs are defined using Python scripts, making workflows highly customizable and modular.
+
+Extensibility – Custom operators, hooks, and plugins can be implemented in Python.
+
+
+No DSL or Special Language – Unlike some workflow tools that use YAML or JSON, Airflow uses standard Python, allowing users to leverage Python libraries.
+
+Python Execution – The scheduler, executor, and workers all run Python code.
+--
+
+== Airflow Feature: Useful UI - DAG Filtering
+
+image::UI-filters.png[]
+** all dags
+** active dags
+** paused dags
+** running dags
+** filter by tag
+** filter by name
+
+[.notes]
+--
+DAG Visualization – Easily view and monitor DAG execution flows.
+Task Monitoring – Track task statuses (success, failure, retries) in real time.
+Trigger & Rerun – Manually trigger DAGs and retry failed tasks.
+Logging & Debugging – Access detailed logs for troubleshooting.
+Parameter Tuning – Modify DAG configurations dynamically.
+User Access Control – Manage permissions and roles efficiently.
+--
+== Airflow Feature: Useful UI - Cluster Activity
+image::UI-views-cluster-activity.jpg[]
+** Worker Status
+** Task Distribution
+** Queue Health
+** Executor Performance
+** Debuging
+
+[.notes]
+--
+Worker Status – Displays active and inactive worker nodes.
+Task Distribution – Shows how tasks are being assigned across workers.
+Queue Health – Monitors task queues to prevent bottlenecks.
+Executor Performance – Helps analyze task execution times and load balancing.
+Debugging Tool – Useful for identifying failing or stuck tasks on specific nodes.
+--
 
 == Airflow Feature: Robust Integrations
 
-Airflow provides many plug-and-play operators that are ready to execute your tasks on Google Cloud Platform, Amazon Web Services, Microsoft Azure and many other third-party services. This makes Airflow easy to apply to current infrastructure and extend to next-gen technologies.
+image::airflow_integration.png[width=300, align=center]
+
+** Cloud Platforms
+** Databases
+** BigData Frameworks
+
+[.notes]
+--
+Apache Airflow offers robust integrations with various data sources, cloud services, and third-party tools. It supports APIs, databases, cloud platforms (AWS, GCP, Azure), and big data frameworks (Spark, Hadoop, Snowflake), enabling seamless workflow automation across diverse environments.
+--
 
 == Airflow Feature: Easy to Use
 
+image::airflow_easy.png[]
+
 Anyone with Python knowledge can deploy a workflow. Apache Airflow does not limit the scope of your pipelines; you can use it to build ML models, transfer data, manage your infrastructure, and more.
+
+[.notes]
+--
+Apache Airflow provides a user-friendly UI, Python-based workflow definitions, and clear DAG visualizations, making it easy to design, schedule, and monitor workflows. With built-in logging, retry mechanisms, and task dependencies, managing workflows becomes intuitive and efficient for all types of usecases: ML models, data transfer, etc.
+--
 
 == Airflow Feature: Open Source
 
+image::airflow_github.png[]
+** Last commit: 1 hour ago
+** Total commits: +28k
+
 Wherever you want to share your improvement you can do this by opening a PR. It’s simple as that, no barriers, no prolonged procedures. Airflow has many active users who willingly share their experiences. Have any questions? Check out our buzzing slack.
 
-[.notes]
---
-Where is the Slack? How does one join?
---
-
-== Airflow Integrations
-
-Airflow supports following main integrations:
-
-* Apache Sqoop
-* Google Cloud Pub/Sub
-* Amazon CloudWatch Logs
-* Google Kubernetes Engine
-* Google Machine learning
-* Amazon Athena
+** link:https://airflow.apache.org/community/#:~:text=%23user%2Dtroubleshooting[Troubleshoot]
+** link:https://airflow.apache.org/community/#:~:text=%23user%2Dbest%2Dpractices[Best Practices]
+** link:https://github.com/apache/airflow[Airflow Github]
 
 [.notes]
 --
-Ensure that this list reflects the latest state of the art.
+
 --
 
 == Airflow Providers packages
 
-Airflow has providers packages include integrations with third party integrations. They are updated independently of the Apache Airflow core. Some of these are:
+Airflow has 80+ providers packages includng integrations with third party integrations. They are updated independently of the Apache Airflow core. The current integrations are shown below 
 
-* Airbyte
-* Amazon
-* Apache Beam
-* Apache Cassandra
-* JIRA
+
+image::airflow-providers.png[]
+
+
 
 [.notes]
 --
