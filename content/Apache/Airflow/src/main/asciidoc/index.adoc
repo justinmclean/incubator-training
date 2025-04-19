@@ -25,8 +25,9 @@ include::_settings.adoc[]
 :email: Your email
 :position: Your role
 :revealjs_plugins: notes
-:revealjsdir: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0
-
+:revealjsdir: https://cdn.jsdelivr.net/npm/reveal.js@4.1.0
+// :revealjsdir: https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0
+:revealjs_slideNumber: true
 
 
 [.text-center]
@@ -252,7 +253,10 @@ Debugging Tool – Useful for identifying failing or stuck tasks on specific nod
 
 == Airflow Feature: Robust Integrations
 
-image::airflow_integration.png[width=300, align=center]
+// image::airflow_integration.png[width=300, align=center]
+image::airflow_integration.png[]
+
+Airflow offers robust integrations with :
 
 ** Cloud Platforms
 ** Databases
