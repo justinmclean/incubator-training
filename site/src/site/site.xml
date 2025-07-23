@@ -174,6 +174,9 @@
       <item name="License" href="http://www.apache.org/licenses/"/>
       <item name="Sponsoring Apache" href="http://www.apache.org/foundation/sponsorship.html"/>
       <item name="Thanks" href="http://www.apache.org/foundation/thanks.html"/>
+      <item name="Security" href="https://apache.org/security"/>
+      <item name="Privacy" href="https://privacy.apache.org/policies/privacy-policy-public.html"/>
+      <item name="Upcoming events" href="https://events.apache.org/"/>
     </menu>
     <menu ref="modules" inherit="bottom"/>
   </body>
