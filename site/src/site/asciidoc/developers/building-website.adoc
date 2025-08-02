@@ -54,18 +54,18 @@ video::167857327[vimeo,width=640,height=420]
 
 The Training Website is also part of the same GIT repository that contains the code and it is built by Maven as well.
 
-In order to build the website the following command should be sufficient:
+To build the website, the following command should be sufficient:
 
     mvn site
 
 However, this will generate the website for each module inside it's `target/site` directory.
 Opening this in a browser and navigating from pages of one module to another will not work as these links expect a different directory structure.
-In order to create a fully navigatable version of the Website, the following command should be sufficient:
+To create a fully navigatable version of the Website, the following command `inside the "site" module` should be sufficient:
 
     mvn site site:stage
 
 This will generate an additional `target/staging` directory which contains the fully functional version.
 
-A lot of documentation on Maven suggests to use the `site:site` goal directly instead of calling the `site` phase, but in case of Apache Training there is more than just the site generation that has to be executed.
+A lot of documentation on Maven suggests using the `site:site` goal directly instead of calling the `site` phase, but in case of Apache Training there is more than just the site generation that has to be executed.
 
 This is just a quick-start version of the site generation, for fully detailed documentation please read the http://training.apache.org/developers/website.html[Website] documentation page.
