@@ -17,13 +17,12 @@
 # under the License.
 #
 
-version: "3.8"
 services:
   builder:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["/ws/mvnw", "-e", "-Dmaven.repo.local=/ws/out/.repository", "clean", "install"]
+    command: ["/ws/mvnw", "-e", "-Dmaven.repo.local=/ws/out/.repository", "clean", "install", "site"]
     volumes:
       # Bind the local directory as "/ws"
       - type: bind
