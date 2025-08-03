@@ -193,7 +193,7 @@
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+       https://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -232,7 +232,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 All images in the src/main/resources/images directory were produced by
-Justin Mclean and and released under a CC0 license. See licenses/CCO.txt for
+Justin Mclean and released under a CC0 license. See licenses/CCO.txt for
 the full text of the license.
 
 "The C Programming Language, 2nd Edition" is written by Brian W. Kernighan

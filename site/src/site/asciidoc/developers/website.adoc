@@ -6,7 +6,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//      https://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,7 +38,7 @@ This allows us to generate images like the ones on the http://plc4x.apache.org/p
 
 === Providing new content
 
-Within the `src/site` directory, there is a file `site.xml` which generally controls the menu and the look of the site.
+The website content can be found on GitHub, in the /site subdirectory, at https://github.com/apache/incubator-training[github.com/apache/incubator-training]. Within the `src/site` directory, there is a file `site.xml` which generally controls the menu and the look of the site.
 
 Most settings are inherited from the `training` parent module. That's also why this is more complicated than the others.
 
@@ -74,7 +74,7 @@ The simplest form would probably be something like this:
  (the "License"); you may not use this file except in compliance with
  the License.  You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
@@ -111,7 +111,7 @@ If you want to insert the menu somewhere else, you will have to re-define the en
  (the "License"); you may not use this file except in compliance with
  the License.  You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+ https://www.apache.org/licenses/LICENSE-2.0
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,

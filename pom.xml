@@ -8,7 +8,7 @@
   (the "License"); you may not use this file except in compliance with
   the License.  You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+      https://www.apache.org/licenses/LICENSE-2.0
 
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>23</version>
+    <version>31</version>
   </parent>
 
   <groupId>org.apache.training</groupId>
@@ -39,6 +39,43 @@
   <modules>
     <module>site</module>
     <module>tools</module>
+    <module>content</module>
+    <module>website-skin</module>
   </modules>
+
+  <scm>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/incubator-training.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/incubator-training.git</developerConnection>
+    <url>https://github.com/apache/incubator-training</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <!-- Make Snapshots of Apache projects available -->
+  <repositories>
+    <repository>
+      <id>apache-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <!-- Make Snapshots of Apache plugins available -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>apache-snapshots</id>
+      <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
 </project>

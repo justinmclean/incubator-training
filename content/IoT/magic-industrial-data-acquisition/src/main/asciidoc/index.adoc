@@ -1,0 +1,366 @@
+////
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+////
+
+include::_settings.adoc[]
+:presenter_name: Christofer Dutz
+:presenter_company: Timecho Europe GmbH
+:description: Using Apache IoTDB, Apache TsFile and Apache PLC4X for collecting industrial data.
+:keywords: IIoT, IoT
+:author: Christofer Dutz
+:email: christofer.dutz@timecho.com
+:position: Solution Consulting Expert
+
+// 35 minutes - 5 minutes Q&A = 1800 seconds
+:revealjs_totalTime: 1800
+
+== !
+
+image::denver.jpg[canvas]
+
+[.talkTitle]
+****
+
+[.mainTitle]
+Magic industrial data acquisition with Apache PLC4X, TsFile and IoTDB
+[.subTitle]
+
+
+[.speaker]
+Christofer Dutz, Timecho
+****
+
+[.conferenceName]
+Community over Code NA
+
+[.year]
+09.10.2024
+
+[.imageCredits]
+(Image from Wikipedia under CC)
+
+[NOTE.speaker]
+--
+--
+
+== Remarks
+
+image::logo-training.png[float=right,width=300]
+
+* Slides made with:
+* https://training.apache.org
+* Incubating project
+* Written in Asciidoctor
+* For sharing training material
+* Slides will be available there
+
+[NOTE.speaker]
+--
+* Under the hood Maven+AsciiDoc+RevealJS
+--
+
+== Overview
+
+* Typical data acquisition szenarios
+* Problems with these szenarios
+* Solving problems with:
+** Apache PLC4X
+** Apache TsFile
+** Apache IoTDB
+* Putting it all together
+
+[NOTE.speaker]
+--
+--
+
+== Typical szenarios
+
+image::no-problemo.png[]
+
+[NOTE.speaker]
+--
+* Quickly explain the scenarios
+* Point out Eclipse SDV for the mobile data collection
+* Don't go into the problems, that's on the next slides.
+--
+
+== Problems with these szenarios
+
+image::mucho-problemo.png[]
+
+[NOTE.speaker]
+--
+* Line width == bandwidth
+* Problems come on the other slide
+** We'll go into all of them on the following slides
+* This slide is just for setting the stage
+--
+
+== Accessibility Problems
+
+image::mucho-problemo-plc4x.png[]
+
+[NOTE.speaker]
+--
+* Accessing data on the machinery
+* Overloading PLCs and Network infrastructure
+* Shop-floor networks usually overloaded
+** Demonstrate network and device load by the thickness of lines
+* Switches configured to prioritize packets
+* Digitization efforts require more data -> increase traffic
+--
+
+== Apache PLC4X
+
+image::logo-plc4x.png[float=right,width=300]
+
+* Unified protocol adapter
+* Native protocol communication
+** About 19 protocols currently
+* Shared API over all protocols
+* Available in multiple languages
+** Java, Go, C, C#, Python (Rust)
+
+[NOTE.speaker]
+--
+* Now you know why I'm carrying around Toddy all the time ;-)
+* Why not use MQTT or OPC-UA you ask?
+* Especially given the Eclipse Milo and the SparkplugB Working-Group
+--
+
+== OPC-UA
+
+image::opc-ua-example.png[]
+
+[NOTE.speaker]
+--
+* See the size of the payload?
+* That's only reading one boolean value!
+--
+
+== MQTT
+
+image::mqtt-example.png[]
+
+[NOTE.speaker]
+--
+* See the size of the payload?
+* SparkplugB would add more payload
+--
+
+== Modbus-TCP
+
+image::modbus-tcp-example.png[]
+
+[NOTE.speaker]
+--
+* See the size of the payload?
+--
+
+== Using native protocols
+
+* Using native protocols of PLCs reduces:
+** Size of packets
+** Load on the network
+** Load on the Hardware (both sides)
+** Costs, as no retrofit is required
+
+[NOTE.speaker]
+--
+* OPC-UA and MQTT run as additional processes on hardware
+* Native protocols cause less CPU and Memory usage
+* In the IT & Production Magazine even an article on how the license costs of OPC-UA are slowing digitization progress
+--
+
+== Network Load/Availability
+
+image::mucho-problemo-tsfile.png[]
+
+[NOTE.speaker]
+--
+* Cars more unconnected than connected in Germany
+* Bandwidth too small
+** Wireless connections
+** Internet Uplink
+** Also Shop-floor networks
+--
+
+== Apache TsFile
+
+image::logo-tsfile.png[float=right,width=300]
+
+* Storage format for IoT-data
+* Aggregated data
+* Highly compressed data
+* Available in multiple languages
+* Storage technology of Apache IoTDB
+
+[NOTE.speaker]
+--
+* Compression to 10% of original size lossless
+* Compression to 1% of original size lossy
+** Lossy means: loose accuracy after several fractional digits (Not always important if its 21.45245435454°C or just 1.4524°C)
+--
+
+== How does Apache TsFile help?
+
+* Collecting data ON the devices
+** Push instead of Pull
+** Bonus: Cycle-Synchronous data
+* Aggregating data on gateways
+* Utilizing NB IoT bandwidth 100%
+* Buffering if no connection
+
+[NOTE.speaker]
+--
+* Libraries for common OT Engineering tools (needs to be created)
+* Pull reads lots of redundant data
+* Using full size of LoRaWan packet
+--
+
+== Data Volume and Granularity
+
+image::mucho-problemo-iotdb.png[]
+
+[NOTE.speaker]
+--
+* Too many apps querying the hardware
+* Data replicated 1-to-1 on all levels
+* Internet Uplink becomes the bottleneck
+* Cloud-Storage-Costs
+* Different layers need different retention and granularity
+--
+
+== Solving problems with: Apache IoTDB
+
+image::logo-iotdb.png[float=right,width=300]
+
+* Acting as data-hub
+** Unified Namespace
+** Streaming queries
+** Apps subscribe to DB
+* Aggregation
+* Compression
+* Replication
+* Different retention on every level/device
+
+[NOTE.speaker]
+--
+* Uses compression of TsFile
+* Replication with aggregation (Only forward what's needed)
+* IoTDB benefits:
+** IoTDB is built for tree structure such as Unified Namespace
+* Example:
+** Line-Level: ms granularity of all data-points with one day retention
+** Department-Level: minute granularity of performance indicators (year retention)
+** Factory-Level: hour granularity of the main KPIs (year retention)
+** Cloud-Level: daily granularity of the main KPIs (eternal retention)
+--
+
+== Solving problems with: Apache IoTDB
+
+* Apache IoTDB / TimechoDB won first place in any dimension in any benchmark it competed in
+** benchAnt
+** TPCx-IoT
+
+[NOTE.speaker]
+--
+* In contrast to most other TSDBs not built up on existing solution
+* Built explicitly to target the scenarios causing issues with regular solutions
+** Out-of-order data
+** Bursts of data (Millions per Second)
+** Aggregation queries
+--
+
+== !
+
+image::benchmark-benchant.png[canvas]
+
+[NOTE.speaker]
+--
+* Wins when sorting by all categories
+* Would have only lost by name, if that was sortable
+--
+
+== !
+
+image::benchmark-tpcx-iot.png[canvas]
+
+[NOTE.speaker]
+--
+* TimechoDB
+** Commercial offering of IoTDB by Timecho
+** Apache IoTDB with additional bells and whistles aimed at enterprise customers
+* Just look at the gap between 1 and 2 and third place
+** Especially Performance and Price/kIoTps
+--
+
+== Putting it all together
+
+image::solution.png[]
+
+[NOTE.speaker]
+--
+* See the thinner lines?
+--
+
+== Putting it all together
+
+* Using TsFile-Embedded on Hardware
+** PLC libraries
+** No Gateways needed
+** Forward data via MQTT
+
+* Gateways using:
+** TsFile to store aggregated & compressed data
+** PLC4X to collect data using native protocols
+** Forward data to IoTDB servers using Session-API or MQTT
+
+[NOTE.speaker]
+--
+* Forward with MQTT because libs are already available
+* OT admins know how to handle MQTT traffic
+--
+
+== Putting it all together
+
+* Servers based on Apache IoTDB:
+** Acting as central data-hub for applications (Unified Namespace)
+** Applications subscribe to changes (Push vs Pull)
+** Automatically replicating to higher levels
+** Automatic aggregation to higher levels
+
+[NOTE.speaker]
+--
+* We're currently working on all of this
+* Basic functionality in Open-Source projects
+* Turnkey solutions most probably as commercial product by Timecho
+--
+
+== Thanks for listening
+
+image::linkedin.jpg[float=right,width=280]
+
+* Questions?
+* Suggestions?
+* Wanna join in on the fun?
+** dev@plc4x.apache.org
+** dev@iotdb.apache.org
+** dev@tsfile.apache.org
+* Contact me on LinkedIn:
+** linkedin.com/in/christofer-dutz/
