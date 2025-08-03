@@ -1,7 +1,7 @@
 {
   "@context": "https://w3id.org/openbadges/v2",
   "type": "Assertion",
-  "id": "https://training.apache.org/assertions/test-badge/justin-mclean.json",
+  "id": "https://training.apache.org/badges/test-badge/assertions/justin-mclean.json",
   "recipient": {
     "type": "email",
     "hashed": true,
@@ -12,5 +12,5 @@
   "verification": {
     "type": "Hosted"
   },
-  "issuedOn": "2025-08-03T08:31:52Z"
+  "issuedOn": "2025-08-03T14:15:46Z"
 }
