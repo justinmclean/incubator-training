@@ -76,7 +76,7 @@ if not BASE_IMAGE.exists():
     sys.exit(1)
 
 BADGECLASS_URL = f"https://training.apache.org/badges/{badge_slug}/badgeclass.json"
-ASSERTION_BASE_URL = f"https://training.apache.org/assertions/{badge_slug}"
+ASSERTION_BASE_URL = f"https://training.apache.org/badges/{badge_slug}/assertions"
 
 # --- Read recipients.csv ---
 try:

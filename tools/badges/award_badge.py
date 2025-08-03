@@ -79,8 +79,7 @@ if not BASE_IMAGE.is_file():
     sys.exit(1)
 
 BADGECLASS_URL = f"https://training.apache.org/badges/{badge_slug}/badgeclass.json"
-ASSERTION_BASE_URL = f"https://training.apache.org/assertions/{badge_slug}"
-
+ASSERTION_BASE_URL = f"https://training.apache.org/badges/{badge_slug}/assertions"
 # --- Create assertion ---
 uid = hashlib.sha256(email.encode("utf-8")).hexdigest()
 issued_on = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
