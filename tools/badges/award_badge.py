@@ -1,17 +1,6 @@
 # Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# contributor license agreements. See the NOTICE file for details.
+# SPDX-License-Identifier: Apache-2.0
 # -*- coding: utf-8 -*-
 import json
 import hashlib
@@ -20,9 +9,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from openbadges_bakery import bake
-
-def slugify(text):
-    return ''.join(c if c.isalnum() else '-' for c in text.lower()).strip('-')
 
 def write_json(path, obj):
     with open(path, 'w', encoding='utf-8') as f:
@@ -60,18 +46,30 @@ except (IndexError, ValueError):
     print("❌ Invalid choice.")
     sys.exit(1)
 
-# --- Recipient info ---
-name = input("Enter recipient full name: ").strip()
-email = input("Enter recipient email: ").strip()
-name_slug = slugify(name)
-
 # --- Badge paths ---
 BADGE_DIR = SITE_BADGES_DIR / badge_slug
 ASSERTION_DIR = BADGE_DIR / "assertions"
 BAKED_DIR = BADGE_DIR / "baked"
 
-ASSERTION_DIR.mkdir(exist_ok=True)
-BAKED_DIR.mkdir(exist_ok=True)
+ASSERTION_DIR.mkdir(parents=True, exist_ok=True)
+BAKED_DIR.mkdir(parents=True, exist_ok=True)
+
+# --- Recipient email ---
+email = input("Enter recipient email: ").strip()
+uid = hashlib.sha256(email.encode("utf-8")).hexdigest()
+
+# --- Find a unique badge_id ---
+badge_id_length = 12    
+while True:
+    badge_id = uid[:badge_id_length]
+    assertion_path = ASSERTION_DIR / f"{badge_id}.json"
+    output_image = BAKED_DIR / f"{badge_id}.png"
+    if not assertion_path.exists() and not output_image.exists():
+        break
+    badge_id_length += 1
+    if badge_id_length > len(uid):
+        print("❌ Could not generate unique badge ID — hash exhausted.")
+        sys.exit(1)
 
 BASE_IMAGE = BADGE_DIR / "badge.png"
 if not BASE_IMAGE.is_file():
@@ -80,14 +78,14 @@ if not BASE_IMAGE.is_file():
 
 BADGECLASS_URL = f"https://training.apache.org/badges/{badge_slug}/badgeclass.json"
 ASSERTION_BASE_URL = f"https://training.apache.org/badges/{badge_slug}/assertions"
+
 # --- Create assertion ---
-uid = hashlib.sha256(email.encode("utf-8")).hexdigest()
 issued_on = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 assertion = {
     "@context": "https://w3id.org/openbadges/v2",
     "type": "Assertion",
-    "id": f"{ASSERTION_BASE_URL}/{name_slug}.json",
+    "id": f"{ASSERTION_BASE_URL}/{badge_id}.json",
     "recipient": {
         "type": "email",
         "hashed": True,
@@ -101,15 +99,15 @@ assertion = {
     "issuedOn": issued_on
 }
 
-assertion_path = ASSERTION_DIR / f"{name_slug}.json"
+# --- Save and bake ---
+assertion_path = ASSERTION_DIR / f"{badge_id}.json"
 write_json(assertion_path, assertion)
 
-# --- Bake badge image ---
-output_image = BAKED_DIR / f"{name_slug}.png"
+output_image = BAKED_DIR / f"{badge_id}.png"
 with open(BASE_IMAGE, "rb") as img_file:
     baked_file = bake(io.BytesIO(img_file.read()), json.dumps(assertion))
     with open(output_image, "wb") as out:
         out.write(baked_file.read())
     baked_file.close()
 
-print(f"🏷️  Baked badge saved to {output_image}")
+print(f"🏷️  Baked badge for {email} saved to {output_image}")

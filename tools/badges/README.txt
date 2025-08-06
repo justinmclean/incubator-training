@@ -1,8 +1,7 @@
 🏅 Open Badge Issuer Toolkit (Python)
 ======================================
 
-This toolkit helps you create, award, bake, and verify Open Badges v2.0
-(https://www.imsglobal.org/openbadges) using Python.
+A lightweight toolkit to create, award, bake, and verify [Open Badges v2.0](https://www.imsglobal.org/openbadges) using Python.
 
 📁 Badge Directory Structure
 ---------------------
@@ -39,9 +38,9 @@ This toolkit helps you create, award, bake, and verify Open Badges v2.0
      python award_badges.py
 
    - Reads recipients.csv:
-       name,email
-       Alice Smith,alice@example.com
-       Bob Jones,bob@example.com
+       email
+       alice@example.com
+       bob@example.com
 
    - Outputs for each recipient:
      - badges/<slug>/assertions/<recipient>.json
@@ -55,7 +54,7 @@ This toolkit helps you create, award, bake, and verify Open Badges v2.0
 
    - Prompts for:
      - Badge (from list of available badges)
-     - Recipient name and email
+     - Recipient email
    - Outputs:
      - badges/<slug>/assertions/<recipient>.json
      - badges/<slug>/badge_<slug>_<recipient>.png (baked image)
@@ -68,7 +67,16 @@ This toolkit helps you create, award, bake, and verify Open Badges v2.0
 
    - Extracts and displays the baked assertion
    - Validates structure and required fields
-   - Optionally checks that the hosted assertion matches the baked one
+   - Checks that the hosted assertion matches the baked one
+
+  5. verify_email.py
+   Verify a baked badge email hash.
+
+   Usage:
+     python verify_email.py badge.png email
+
+   - Computes SHA-256 hash of the provided email
+   - Compares it to the metadata in the baked badge 
 
 📦 Requirements
 ---------------
