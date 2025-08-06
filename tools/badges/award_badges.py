@@ -1,17 +1,6 @@
 # Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# contributor license agreements. See the NOTICE file for details.
+# SPDX-License-Identifier: Apache-2.0
 # -*- coding: utf-8 -*-
 import csv
 import hashlib
@@ -21,9 +10,6 @@ import io
 from datetime import datetime, timezone
 from pathlib import Path
 from openbadges_bakery import bake
-
-def slugify(text):
-    return ''.join(c if c.isalnum() else '-' for c in text.lower()).strip('-')
 
 def write_json(path, obj):
     with open(path, 'w', encoding='utf-8') as f:
@@ -83,16 +69,25 @@ try:
     with open("recipients.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            name = row["name"].strip()
             email = row["email"].strip()
-            name_slug = slugify(name)
             uid = hashlib.sha256(email.encode("utf-8")).hexdigest()
-            issued_on = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            badge_id_length = 12    
+            while True:
+                badge_id = uid[:badge_id_length]
+                assertion_path = ASSERTION_DIR / f"{badge_id}.json"
+                output_image = BAKED_DIR / f"{badge_id}.png"
+                if not assertion_path.exists() and not output_image.exists():
+                    break
+                badge_id_length += 1
+                if badge_id_length > len(uid):
+                    print("❌ Could not generate unique badge ID — hash exhausted.")
+                    sys.exit(1)
 
+            issued_on = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             assertion = {
                 "@context": "https://w3id.org/openbadges/v2",
                 "type": "Assertion",
-                "id": f"{ASSERTION_BASE_URL}/{name_slug}.json",
+                "id": f"{ASSERTION_BASE_URL}/{badge_id}.json",
                 "recipient": {
                     "type": "email",
                     "hashed": True,
@@ -107,18 +102,18 @@ try:
             }
 
             # Write assertion
-            assertion_path = ASSERTION_DIR / f"{name_slug}.json"
+            assertion_path = ASSERTION_DIR / f"{badge_id}.json"
             write_json(assertion_path, assertion)
 
             # Bake badge image
             with open(BASE_IMAGE, "rb") as img_file:
                 baked_file = bake(io.BytesIO(img_file.read()), json.dumps(assertion))
-                output_image = BAKED_DIR / f"{name_slug}.png"
+                output_image = BAKED_DIR / f"{badge_id}.png"
                 with open(output_image, "wb") as out:
                     out.write(baked_file.read())
                 baked_file.close()
 
-            print(f"🏷️  Baked badge for {name} → {output_image}")
+            print(f"🏷️  Baked badge for {email} → {output_image}")
 
 except FileNotFoundError:
     print("❌ recipients.csv file not found.")
