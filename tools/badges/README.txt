@@ -73,10 +73,22 @@ A lightweight toolkit to create, award, bake, and verify [Open Badges v2.0](http
    Verify a baked badge email hash.
 
    Usage:
-     python verify_email.py badge.png email
+     python verify_email.py badge.png someone@example.com
 
    - Computes SHA-256 hash of the provided email
    - Compares it to the metadata in the baked badge 
+
+  5. find_hash.py
+   Find badge assertions issued to a specific email address.
+
+   Usage:
+
+       python tools/find_hash.py someone@example.com
+
+   - Computes the SHA-256 hash of the email
+   - Uses the first 12 characters of the hash as a filename prefix
+   - Matches any `.json` assertion file that starts with that prefix
+
 
 📦 Requirements
 ---------------
