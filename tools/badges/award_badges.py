@@ -91,7 +91,6 @@ try:
                 "recipient": {
                     "type": "email",
                     "hashed": True,
-                    "salt": None,
                     "identity": f"sha256${uid}"
                 },
                 "badge": BADGECLASS_URL,
