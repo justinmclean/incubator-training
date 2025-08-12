@@ -4,12 +4,23 @@ import uharfbuzz as hb
 import math
 import subprocess
 
+# Regular font
+# kerning_overrides = {
+#    ("A", "T"): -6.11,
+#    ("D", "A"): -2.45,
+#    ("O", "V"): -2.42,
+#    ("P", "A"): -5.31,
+#    ("T", "O"): -2.14,
+#}
+
+# Bold font
 kerning_overrides = {
-    ("A", "T"): -6.11,
-    ("D", "A"): -2.45,
-    ("O", "V"): -2.42,
-    ("P", "A"): -5.31,
-    ("T", "O"): -2.14,
+    ("O", "V"): -2.88,
+    ("A", "S"): -1.09,
+    ("D", "A"): -3.02,
+    ("T", "O"): -2.28,
+    ("A", "T"): -6.39,
+    ("P", "A"): -5.97,
 }
 
 def shape_text(text, font_path, size_pt):
@@ -28,7 +39,7 @@ def shape_text(text, font_path, size_pt):
 
 def draw_badge(project_text, badge_text, badge_color,
                font_project_path="Inter-Bold.ttf",
-               font_title_path="Inter-Regular.ttf",
+               font_title_path="Inter-Bold.ttf",
                output_path="badge_output.png"):
     colors = {"1": "red", "2": "blue", "3": "purple"}
     badge_color = colors.get(badge_color, "red")
@@ -87,9 +98,9 @@ def draw_badge(project_text, badge_text, badge_color,
 
         char_img = Image.frombuffer("L", (width, height), bytes(bitmap.buffer), "raw", "L", 0, 1)
         rgba = Image.merge("RGBA", (
-            Image.new("L", char_img.size, 255),
-            Image.new("L", char_img.size, 255),
-            Image.new("L", char_img.size, 255),
+            Image.new("L", char_img.size, 0), 
+            Image.new("L", char_img.size, 0),
+            Image.new("L", char_img.size, 0),
             char_img
         ))
 
