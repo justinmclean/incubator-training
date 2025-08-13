@@ -107,7 +107,7 @@ project. These include:
     * `_b.adoc`
     * `_a.acoc`
     * `toddy.jpg`
-`
+
 Those files are provided purely as examples of what is possible.
 
 == Building your new presentation
