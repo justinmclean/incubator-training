@@ -44,3 +44,8 @@ Apache Accumulo® is a sorted, distributed key/value store that provides robust,
 --
 Notes go here
 --
+
+== Coming Soon!
+
+Please get in touch with the training.apache.org project to volunteer to
+improve this presentation.

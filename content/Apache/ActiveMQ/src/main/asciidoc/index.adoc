@@ -44,3 +44,8 @@ Apache ActiveMQ is the most popular open source, multi-protocol, Java-based mess
 --
 Notes go here
 --
+
+== Coming Soon!
+
+Please get in touch with the training.apache.org project to volunteer to
+improve this presentation.

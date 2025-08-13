@@ -43,3 +43,10 @@ Apache Airavata&tm; is a software framework that enables you to compose, manage,
 --
 Notes go here
 --
+
+
+== Coming Soon!
+
+Please get in touch with the training.apache.org project to volunteer to
+improve this presentation.
+
