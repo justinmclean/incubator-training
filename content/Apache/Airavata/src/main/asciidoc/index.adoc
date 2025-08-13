@@ -37,8 +37,7 @@ Intro to Airavata!
 
 == What is Apache Airavata?
 
-Apache Airavata® is ...
-
+Apache Airavata&tm; is a software framework that enables you to compose, manage, execute, and monitor large scale applications and workflows on distributed computing resources such as local clusters, supercomputers, computational grids, and computing clouds.
 
 [.notes]
 --

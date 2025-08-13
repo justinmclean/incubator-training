@@ -37,7 +37,7 @@ Intro to ActiveMQ!
 
 == What is Apache ActiveMQ?
 
-Apache ActiveMQ® is ...
+Apache ActiveMQ is the most popular open source, multi-protocol, Java-based message broker.
 
 
 [.notes]
