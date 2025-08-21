@@ -96,9 +96,3 @@ body > div.container.subfooter > div > div > p.pull-right {
     padding-bottom: 10px;
     padding-top: 10px
 }
-
-#bannerMiddle > img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto; 
-}
