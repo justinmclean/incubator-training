@@ -75,12 +75,9 @@
 
   <bannerLeft>
       <src>/images/training-logo.svg</src>
-  </bannerLeft>
-
-  <bannerRight>
       <name>Apache Training</name>
       <href>https://training.apache.org/</href>
-  </bannerRight>
+  </bannerLeft>
 
   <body>
     <head>
