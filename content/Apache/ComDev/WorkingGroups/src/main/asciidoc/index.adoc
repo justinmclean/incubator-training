@@ -417,7 +417,7 @@ https://community.apache.org/workinggroups
 
 == Questions?
 
-This presentation is part of the Apache Training (Incubating) project,
+This presentation is part of the Apache Training project,
 and under the AL2.0 license.
 
 https://training.apache.org/
