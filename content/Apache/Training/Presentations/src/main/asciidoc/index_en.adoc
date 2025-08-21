@@ -34,7 +34,7 @@ image::ApacheLogo.png[]
 image:training.png[width=50%]
 
 == Apache Training
-* New incubating project
+* New TLP project
 * Open source training material
 * Create shared resources
 * Slides, workshops and labs

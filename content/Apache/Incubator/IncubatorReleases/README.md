@@ -5,13 +5,13 @@ An overview of how to navigate the ASF incubating process from start to finish.
 
 It can seem like a daunting task to bring a new open source project into the world. The Apache Software Foundation incubator can help you! Getting into the incubator and surviving incubation is straight forward when you know what to do and how to do it. This talk gives an overview of the ASF incubation process, the pitfalls to watch out for, and how projects become successful. It also gives an overview of the incubator PMC, how to interact with other podlings and make your mark on the ecosystem and finally how to make it as a top-level project at the Apache Software Foundation. It also goes over some the challenges that your project may face along the path to graduation.
 
-## About the Apache Training (Incubating) Project
+## About the Apache Training Project
 
 The purpose of the Training project is to create high-quality training material for various projects in an open source form. Up until now everyone who wants to offer a Training course for one of the Apache projects needs to create her or his own slides/labs and keep them up-to-date. This is a significant investment of time and money. This project aims to spread that burden and help all Apache projects as we can create shared resources and we can also create cross-project training resources.
 
 ## How to Get Involved
 
-Vist [Apache Training (incubating)](https://training.apache.org) for more information on the project.
+Vist [Apache Training](https://training.apache.org) for more information on the project.
 These slides can be found in [github](https://github.com/apache/incubator-training/tree/master/content/ApacheWay/NavigatingASFIncubation.). Pull requests welcome.
 
 ## Technology Used

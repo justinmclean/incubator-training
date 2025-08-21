@@ -49,7 +49,7 @@
         <column>modules</column>
       </bottomNav>
       <brand>
-        <name>Apache Training (Incubating)</name>
+        <name>Apache Training</name>
         <href>https://training.apache.org/</href>
       </brand>
       <bottomDescription>
@@ -73,17 +73,11 @@
     <logo name="Apache Software Foundation" img="https://www.apache.org/images/asf_logo.png" href="https://www.apache.org/"/>
   </poweredBy>
 
-  <bannerLeft>
-      <name>Apache Training (incubating)</name>
+  <bannerMiddle>
+      <name>Apache Training</name>
       <src>/images/training-logo.svg</src>
       <href>https://training.apache.org/</href>
-  </bannerLeft>
-
-  <bannerRight>
-    <name>Apache Incubator</name>
-    <src>https://incubator.apache.org/images/incubator_feather_egg_logo_sm.png</src>
-    <href>http://incubator.apache.org/</href>
-  </bannerRight>
+  </bannerMiddle>
 
   <body>
     <head>

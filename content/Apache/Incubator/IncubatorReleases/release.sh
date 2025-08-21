@@ -25,7 +25,7 @@ else
     version=$1
 fi
 
-file="apache-training-navigating-ASF-incubation-$version-incubating.tar.gz"
+file="apache-training-navigating-ASF-incubation-$version.tar.gz"
 
 ./clean-deps.sh
 mvn clean
