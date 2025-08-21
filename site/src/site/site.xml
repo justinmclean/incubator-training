@@ -74,10 +74,13 @@
   </poweredBy>
 
   <bannerLeft>
-      <name>Apache Training</name>
       <src>/images/training-logo.svg</src>
-      <href>https://training.apache.org/</href>
   </bannerLeft>
+
+  <bannerRight>
+      <name>Apache Training</name>
+      <href>https://training.apache.org/</href>
+  </bannerRight>
 
   <body>
     <head>
