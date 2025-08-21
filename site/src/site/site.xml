@@ -73,11 +73,11 @@
     <logo name="Apache Software Foundation" img="https://www.apache.org/images/asf_logo.png" href="https://www.apache.org/"/>
   </poweredBy>
 
-  <bannerMiddle>
+  <bannerLeft>
       <name>Apache Training</name>
       <src>/images/training-logo.svg</src>
       <href>https://training.apache.org/</href>
-  </bannerMiddle>
+  </bannerLeft>
 
   <body>
     <head>
