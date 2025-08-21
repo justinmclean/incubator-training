@@ -1,5 +1,4 @@
 ////
-
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -7,45 +6,158 @@
   (the "License"); you may not use this file except in compliance with
   the License.  You may obtain a copy of the License at
 
-      https://www.apache.org/licenses/LICENSE-2.0
+      http://www.apache.org/licenses/LICENSE-2.0
 
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-
 ////
 
 include::_settings.adoc[]
-:presenter_name: Some Cool Person
-:presenter_company: Apache Software Foundation
+:presenter_name: Your Name
+:presenter_company: Your Company
 :description: Introduction to Apache ActiveMQ
-:keywords: Apache, ActiveMQ
+:keywords: Apache, ActiveMQ, messaging, JMS
 :author: Your Name
 :email: Your email
 :position: Your role
+:revealjs_plugins: notes
+:revealjsdir: https://cdn.jsdelivr.net/npm/reveal.js@4.1.0
+:revealjs_slideNumber: true
 
-== Apache ActiveMQ
+[.text-center]
+====
+Apache ActiveMQ
 
-image::activemq-logo.png[]
+A High-Level Overview
+====
 
 [.notes]
 --
-Intro to ActiveMQ!
+Introduce yourself, your role, and why you’re presenting on ActiveMQ.  
+This is one of ASF’s longest-standing and most widely used messaging projects.
 --
+
+== Table of Contents
+
+* What is Apache ActiveMQ?
+* Why ActiveMQ?
+* Core Principles
+* Core Components
+* Features
+* Ecosystem
+* Deployment Options
+* Further Sources
 
 == What is Apache ActiveMQ?
 
-Apache ActiveMQ is the most popular open source, multi-protocol, Java-based message broker.
-
+* Apache ActiveMQ is a **message broker** that implements the **Java Message Service (JMS)** specification.  
+* Provides **reliable, asynchronous communication** between applications.  
+* First released in 2004, one of the most mature ASF projects.  
+* Widely used in **enterprise integration, microservices, and legacy systems**.  
 
 [.notes]
 --
-Notes go here
+Stress that ActiveMQ predates Kafka but serves a different purpose.  
+It is not about event streaming at web scale, but about reliable messaging and JMS compliance.  
+Still used heavily in finance, telecoms, and enterprise middleware.  
 --
 
-== Coming Soon!
+== Why ActiveMQ?
 
-Please get in touch with the training.apache.org project to volunteer to
-improve this presentation.
+* Reliable messaging system with **decades of production use**.  
+* Supports **multiple protocols**: JMS, AMQP, MQTT, STOMP, OpenWire.  
+* Good fit for **traditional enterprise applications**.  
+* Strong focus on **compatibility, durability, and ease of use**.  
+
+[.notes]
+--
+Explain that ActiveMQ is protocol-rich and versatile.  
+Different protocols allow it to connect IoT devices (MQTT), enterprise apps (JMS), and modern cloud apps (AMQP).  
+--
+
+== Core Principles
+
+* **Reliable** – guaranteed message delivery.  
+* **Flexible** – supports queues, topics, durable subscriptions.  
+* **Interoperable** – multiple protocols, bridges, and APIs.  
+* **Open Source** – ASF-governed, vendor-neutral.  
+
+[.notes]
+--
+Highlight the difference between **queues** (point-to-point) and **topics** (publish-subscribe).  
+Durability is a key feature: messages are not lost even if consumers are offline.  
+--
+
+== Core Components
+
+* **Broker** – the ActiveMQ server that routes and stores messages.  
+* **Destination** – queues and topics where messages are sent.  
+* **Producer** – application that sends messages.  
+* **Consumer** – application that receives messages.  
+* **Persistence Store** – stores messages for durability.  
+* **Transport Connectors** – support for multiple protocols.  
+
+[.notes]
+--
+This follows the classic messaging model.  
+Persistence ensures reliability: messages survive restarts.  
+ActiveMQ brokers can cluster for scalability and high availability.  
+--
+
+== Features
+
+* **JMS-compliant** – drop-in for enterprise Java apps.  
+* **Multiple protocols** – JMS, AMQP, STOMP, MQTT, OpenWire.  
+* **Clustering & failover** – high availability for production.  
+* **Durable subscriptions** – guarantees delivery even when clients are offline.  
+* **Security & management** – authentication, authorization, JMX monitoring.  
+
+[.notes]
+--
+These features make ActiveMQ a safe choice for critical enterprise apps.  
+Durable subscriptions are especially important in business workflows.  
+--
+
+== ActiveMQ Ecosystem
+
+* **ActiveMQ Classic** – stable, long-lived version.  
+* **ActiveMQ Artemis** – next-generation broker with higher performance.  
+* **Integration** with Camel, Spring, and Java EE.  
+* Works with monitoring tools and cloud deployments.  
+
+[.notes]
+--
+Explain the split: ActiveMQ Classic is widely deployed; Artemis is the newer, faster version based on HornetQ.  
+Artemis is the strategic future but both are supported.  
+--
+
+== Deployment Options
+
+* **Standalone broker** on-premise.  
+* **Embedded mode** inside applications.  
+* **Clustered brokers** for high availability.  
+* **Cloud deployments** using Docker or Kubernetes.  
+
+[.notes]
+--
+ActiveMQ is flexible: run it as a server or embed it into your app.  
+Clustering ensures resilience.  
+Modern users often deploy on Kubernetes.  
+--
+
+== Further Sources
+
+* *Apache ActiveMQ Website*: https://activemq.apache.org/  
+* *Documentation*: https://activemq.apache.org/documentation  
+* *GitHub*: https://github.com/apache/activemq  
+* *Community*: https://activemq.apache.org/community  
+
+[.notes]
+--
+Point people to the website and community.  
+Encourage exploring both Classic and Artemis to understand which suits their needs.  
+--
+
