@@ -849,7 +849,7 @@
                 <fileSet>
                   <directory>${project.build.directory}</directory>
                   <includes>
-                    <include>apache-training-incubating-${project.version}-source-release.zip</include>
+                    <include>apache-training-${project.version}-source-release.zip</include>
                   </includes>
                 </fileSet>
               </fileSets>

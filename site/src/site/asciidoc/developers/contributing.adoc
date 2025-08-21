@@ -20,7 +20,7 @@
 
 === Forms of contribution
 
-The Apache Training (Incubating) project welcomes contributions in all forms, sizes, and shapes.
+The Apache Training project welcomes contributions in all forms, sizes, and shapes.
 Below you can find a small list of possible ways that you can contribute if you have some spare time and want to get involved.
 
 This list is by no means finite. There are without doubt dozens of other useful ways that you can pick, please do not let this limit your creativity!

@@ -49,7 +49,7 @@
         <column>modules</column>
       </bottomNav>
       <brand>
-        <name>Apache Training (Incubating)</name>
+        <name>Apache Training</name>
         <href>https://training.apache.org/</href>
       </brand>
       <bottomDescription>
@@ -74,7 +74,7 @@
   </poweredBy>
 
   <bannerLeft>
-      <name>Apache Training (incubating)</name>
+      <name>Apache Training</name>
       <src>/images/training-logo.svg</src>
       <href>https://training.apache.org/</href>
   </bannerLeft>
